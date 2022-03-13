@@ -29,7 +29,7 @@
 #include "adb.h"
 
 #if !ADB_HOST
-#include <private/android_filesystem_config.h>
+#include <android/android_filesystem_config.h>
 #include <linux/capability.h>
 #include <linux/prctl.h>
 #else

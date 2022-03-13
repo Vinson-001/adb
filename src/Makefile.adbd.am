@@ -1,0 +1,26 @@
+
+AUTOMAKE_OPTIONS = foreign
+INCLUDES = -I$(top_srcdir)/include
+bin_PROGRAMS = adbd
+
+if HOST_IS_LINUX
+    source_deps = usb_linux_client.c
+    libs_deps = -lrt -lncurses
+endif
+
+#if HOST_IS_DARWIN
+ #   source_deps = usb_osx.c get_my_path_darwin.c
+ #   libs_deps = -framework CoreFoundation -framework IOKit -framework Carbon
+#endif
+
+adbd_SOURCES = adb.c backup_service.c transport.c transport_local.c transport_usb.c \
+    services.c file_sync_service.c utils.c jdwp_service.c framebuffer_service.c \
+    remount_service.c log_service.c fdevent.c sockets.c $(source_deps)
+
+adbd_CFLAGS = -O2 -g -Wall -Wno-unused-parameter \
+           -DADB_HOST=0 -D_XOPEN_SOURCE -D_GNU_SOURCE -DHAVE_FORKEXEC
+
+LIBS = -lpthread $(libs_deps)
+
+adbd_LDADD = $(top_srcdir)/libcutils/libcutils.a
+
