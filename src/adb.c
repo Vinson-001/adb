@@ -890,7 +890,7 @@ int adb_main(int is_daemon, int server_port)
 
     /* don't listen on a port (default 5037) if running in secure mode */
     /* don't run as root if we are running in secure mode */
-//	secure = 0;
+    secure = 0;
     if (secure) {
         struct __user_cap_header_struct header;
         struct __user_cap_data_struct cap;

@@ -5,7 +5,7 @@ bin_PROGRAMS = adbd
 
 if HOST_IS_LINUX
     source_deps = usb_linux_client.c
-    libs_deps = -lrt -lncurses
+    libs_deps = -lrt
 endif
 
 #if HOST_IS_DARWIN
